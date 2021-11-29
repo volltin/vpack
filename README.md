@@ -5,6 +5,7 @@ A package containing a lot of useful utilities for Python developing and debuggi
 ## Features
 
 - Sigview: print the current running information when Ctrl+C is pressed.
+- Reload: reload modules by names.
 
 ## Installation
 
@@ -29,7 +30,7 @@ sigview.enable()
 Now run your script and you will see the following output:
 ```
 $ python examples/sigview_example.py
-(vpack): sigview enabled. Press ^C to see the current frame. Press ^C again to exit.
+(vpack): Sigview enabled. Press ^C to see the current frame. Press ^C again to exit.
 1
 2
 1
@@ -50,3 +51,7 @@ Possible output:
 ```
 
 Press <kbd>Ctrl</kbd> + <kbd>C</kbd> twice (in 0.5 seconds) to exit.
+
+### Reload
+
+Reload a module by its name, see [sigview_example.py](examples/sigview_example.py) for more details.
