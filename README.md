@@ -37,21 +37,18 @@ $ python examples/sigview_example.py
 1
 ```
 
-Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to see the current frame.
-
-Possible output:
+Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to see the current frame, possible outputs:
 ```
-# ...
-1
 2
 (vpack): examples/sigview_example.py:12 in main
 (vpack):         time.sleep(2)
-1
-2
-# ...
 ```
 
 Press <kbd>Ctrl</kbd> + <kbd>C</kbd> twice (in 0.5 seconds) to exit.
+
+You can also use `sigview.enable(openshell=True)` to open a new shell when Ctrl+C is pressed.
+
+See [sigview_example.py](examples/sigview_example.py) and [sigview_openshell_example.py.md](examples/sigview_openshell_example.py) for more details.
 
 ## Breakpt
 

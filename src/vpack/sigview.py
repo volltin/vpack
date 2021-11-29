@@ -1,4 +1,5 @@
 import os
+import pdb
 import time
 import signal
 import inspect
@@ -15,6 +16,7 @@ logger = get_logger()
 class Sigview:
     last_time_pressed = 0.0
     interval = 0.5
+    openshell = False
 
     def __init__(self) -> None:
         self.lexer = Py3Lexer(ensurenl=False)
@@ -31,14 +33,27 @@ class Sigview:
         logger.info("%s", Fore.CYAN + text + Style.RESET_ALL)
         logger.info("%s", code)
 
+    def try_openshell(self, frame):
+        if self.openshell:
+            pdb.Pdb().set_trace(frame)
+
+    def enable_openshell(self):
+        self.openshell = True
+
+    def disable_openshell(self):
+        self.openshell = False
+
     def sigview_once_handler(self, signum, frame):
         self.display_frame(frame)
+        self.try_openshell(frame)
+
 
     def sigview_twice_handler(self, signum, frame):
         t_now = time.time()
         t_pre = self.last_time_pressed
         if t_now - t_pre > self.interval:
             self.display_frame(frame)
+            self.try_openshell(frame)
         else:
             raise KeyboardInterrupt
         self.last_time_pressed = time.time()
@@ -62,7 +77,8 @@ class Sigview:
         logger.info("%s", f"Sigview enabled. Press ^C to see the current frame. Press ^C again to exit.")
         signal.signal(signum, self.sigview_twice_handler)
 
-    def enable(self, mode='twice'):
+    def enable(self, mode='twice', openshell=False):
+        self.openshell = openshell
         if mode == 'once':
             self.enable_once()
         elif mode == 'twice':
