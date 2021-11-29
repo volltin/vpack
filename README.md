@@ -54,4 +54,4 @@ Press <kbd>Ctrl</kbd> + <kbd>C</kbd> twice (in 0.5 seconds) to exit.
 
 ### Reload
 
-Reload a module by its name, see [sigview_example.py](examples/sigview_example.py) for more details.
+Reload modules by names, see [reload_example.py](examples/reload_example.py) for more details.
