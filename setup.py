@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="vpack",
-    version="0.0.1",
+    version="0.0.2",
     author="Volltin",
     author_email="volltin@live.com",
     description="A package containing many useful utilities",
@@ -23,4 +23,8 @@ setuptools.setup(
     package_dir={"": "src"},
     packages=setuptools.find_packages(where="src"),
     python_requires=">=3.6",
+    install_requires=[
+        "colorama",
+        "pygments"
+    ]
 )
