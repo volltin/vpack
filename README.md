@@ -4,7 +4,7 @@ A package containing a lot of useful utilities for Python developing and debuggi
 
 ## Features
 
-- Sigview: print the current running information when a signal is received.
+- Sigview: print the current running information when Ctrl+C is pressed.
 
 ## Installation
 
@@ -16,55 +16,37 @@ pip install vpack
 
 ### Sigview
 
-Sigview is a signal handler. It will print the current running information (e.g. file, code, line) when you send a SIGUSR1 signal to the process.
+Sigview is a signal handler. It will print the current running information (e.g. file, lineno, code) when Ctrl+C is pressed.
 
-Enable sigview in your scripts:
+Enable sigview:
 
 ```python
 from vpack import sigview
 sigview.enable()
-
-# your code
-import time
-def main():
-    while True:
-        print('1')
-        time.sleep(1) # A
-        print('2')
-        time.sleep(2) # B
-
-if __name__ == '__main__':
-    main()
+# your code goes here
 ```
 
 Now run your script and you will see the following output:
 ```
-sigview enabled. pid=11786, saved pid to /tmp/.sigview.pid, cmd to /tmp/.sigview.cmd
+$ python examples/sigview_example.py
+(vpack): sigview enabled. Press ^C to see the current frame. Press ^C again to exit.
 1
 2
 1
-2
 ```
 
-Create a new terminal and run the following command:
-```bash
-kill -s SIGUSR1 $(cat /tmp/.sigview.pid)
-# or
-source /tmp/.sigview.cmd
-```
+Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to see the current frame.
 
 Possible output:
 ```
 # ...
 1
 2
-===  Sigview  ===
-test.py:12 in main
-        time.sleep(2)
-=== /Sigview  ===
+(vpack): examples/sigview_example.py:12 in main
+(vpack):         time.sleep(2)
 1
 2
 # ...
 ```
 
-
+Press <kbd>Ctrl</kbd> + <kbd>C</kbd> twice (in 0.5 seconds) to exit.
