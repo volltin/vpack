@@ -50,7 +50,7 @@ You can also use `sigview.enable(openshell=True)` to open a new shell when Ctrl+
 
 See [sigview_example.py](examples/sigview_example.py) and [sigview_openshell_example.py.md](examples/sigview_openshell_example.py) for more details.
 
-## Breakpt
+### Breakpt
 
 Breakpt is a convenient way to set breakpoints. `.at(n)` will try to open an interactive IPython shell when this **line** has been executed `n` times.
 
