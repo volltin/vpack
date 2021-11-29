@@ -65,7 +65,7 @@ class Breakpt:
             embed.__code__ = __new_code__
             embed(colors="neutral")
         except ImportError:
-            logger.info("No IPython installed, using pdb insdead. Strongly recommend to install IPython.")
+            logger.info(Fore.RED + "No IPython installed, using pdb insdead. Strongly recommend to install IPython." + Style.RESET_ALL)
             from pdb import Pdb
             Pdb().set_trace(user_frame)
 
