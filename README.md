@@ -5,6 +5,7 @@ A package containing a lot of useful utilities for Python developing and debuggi
 ## Features
 
 - Sigview: print the current running information when Ctrl+C is pressed.
+- Breakpt: set smart breakpoints conveniently.
 - Reload: reload modules by names.
 
 ## Installation
@@ -51,6 +52,31 @@ Possible output:
 ```
 
 Press <kbd>Ctrl</kbd> + <kbd>C</kbd> twice (in 0.5 seconds) to exit.
+
+## Breakpt
+
+Breakpt is a convenient way to set breakpoints. `.at(n)` will try to open an interactive IPython shell when this **line** has been executed `n` times.
+
+If IPython is not installed, it will try to use pdb.
+
+You can use `breakpt.enable()` and `breakpt.disable()` to enable and disable breakpt.
+
+```python
+from vpack import breakpt
+
+for i in range(10):
+    print(i)
+    breakpt.at(8) # break at i = 7
+    breakpt.at(5) # break at i = 4
+
+for i in range(6):
+    print(i)
+    if i == 2: breakpt.disable() # disable breakpt
+    if i == 4: breakpt.enable() # enable breakpt
+    breakpt.always() # break at i = 0, 1, 4, 5
+```
+
+See [breakpt_example.py](examples/breakpt_example.py) for more details.
 
 ### Reload
 
