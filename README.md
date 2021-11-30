@@ -8,7 +8,7 @@ A package containing a lot of useful utilities for Python developing and debuggi
 
 ## Features
 
-- Sigview: print the current running information when Ctrl+C is pressed.
+- Sigview: press <kbd>Ctrl</kbd>+<kbd>C</kbd> to print the current stack instead of exiting.
 - Breakpt: set always-on, at-time, on-error breakpoints conveniently.
 - Reload: reload modules by names.
 
@@ -22,7 +22,7 @@ pip install --upgrade vpack
 
 ### Sigview
 
-Sigview is a signal handler. It will print the current running information (e.g. file, lineno, code) when Ctrl+C is pressed.
+Sigview is a signal handler. It will print the current running information (e.g. file, lineno, code, stack) when <kbd>Ctrl</kbd>+<kbd>C</kbd> is pressed.
 
 Enable sigview:
 
@@ -41,7 +41,7 @@ $ python examples/sigview_example.py
 1
 ```
 
-Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to see the current frame, possible outputs:
+Press <kbd>Ctrl</kbd>+<kbd>C</kbd> to see the current frame, possible outputs:
 ```
 ^C(vpack): Current file:
 examples/sigview_example.py:11 in main
@@ -55,7 +55,7 @@ examples/sigview_example.py:11 in main
 +----------------------------------------------------------+
 ```
 
-Press <kbd>Ctrl</kbd> + <kbd>C</kbd> twice (in 0.5 seconds) to exit.
+Press <kbd>Ctrl</kbd>+<kbd>C</kbd> twice (in 0.5 seconds) to exit.
 
 You can also use `sigview.enable(openshell=True)` to open a new shell when Ctrl+C is pressed.
 
