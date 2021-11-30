@@ -9,7 +9,7 @@ A package containing a lot of useful utilities for Python developing and debuggi
 ## Features
 
 - Sigview: print the current running information when Ctrl+C is pressed.
-- Breakpt: set smart breakpoints conveniently.
+- Breakpt: set always-on, on-times, on-error breakpoints conveniently.
 - Reload: reload modules by names.
 
 ## Installation
@@ -56,9 +56,10 @@ See [sigview_example.py](examples/sigview_example.py) and [sigview_openshell_exa
 
 ### Breakpt
 
-Breakpt is a convenient way to set breakpoints. `.at(n)` will try to open an interactive IPython shell when this **line** has been executed `n` times.
+Breakpt is a convenient way to set breakpoints.
 
-If IPython is not installed, it will try to use pdb.
+`.at(n)` will try to open an interactive IPython shell (or pdb) when this **line** has been executed `n` times.
+`.onerror()` will try to open a PDB shell when an Exception is raised.
 
 You can use `breakpt.enable()` and `breakpt.disable()` to enable and disable breakpt.
 
@@ -75,6 +76,11 @@ for i in range(6):
     if i == 2: breakpt.disable() # disable breakpt
     if i == 4: breakpt.enable() # enable breakpt
     breakpt.always() # break at i = 0, 1, 4, 5
+
+breakpt.onerror()
+a = [1, 2, 3]
+for i in range(5):
+    print(a[i]) # will break at i = 3
 ```
 
 See [breakpt_example.py](examples/breakpt_example.py) for more details.

@@ -10,3 +10,8 @@ for i in range(6):
     if i == 2: breakpt.disable() # disable breakpt
     if i == 4: breakpt.enable() # enable breakpt
     breakpt.always() # break at i = 0, 1, 4, 5
+
+breakpt.onerror()
+arr = [1, 2, 3]
+for i in range(5):
+    print(arr[i]) # will break at i = 3

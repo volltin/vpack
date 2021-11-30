@@ -1,6 +1,7 @@
 import sys
 import types
 import inspect
+import traceback, pdb
 from colorama import Fore, Back, Style
 
 from . import get_logger
@@ -11,11 +12,17 @@ class Breakpt:
     _cnt = {}
     _enable = True
 
+    def __init__(self) -> None:
+        self._enable = True
+
     def enable(self):
         self._enable = True
 
     def disable(self):
         self._enable = False
+
+    def auto(self):
+        self._enable = hasattr(sys, "ps1") or not sys.stderr.isatty()
 
     def break_fn(self):
         """
@@ -24,8 +31,6 @@ class Breakpt:
         """
         if not self._enable:
             return
-
-        user_frame = sys._getframe(2)
 
         try:
             from IPython import embed
@@ -67,6 +72,7 @@ class Breakpt:
         except ImportError:
             logger.info(Fore.RED + "No IPython installed, using pdb insdead. Strongly recommend to install IPython." + Style.RESET_ALL)
             from pdb import Pdb
+            user_frame = sys._getframe(2)
             Pdb().set_trace(user_frame)
 
     def at(self, times):
@@ -87,6 +93,15 @@ class Breakpt:
     def always(self):
         self.break_fn()
 
+    def onerror(self):
+        def excepthook(type, value, tb):
+            if not self._enable:
+                sys.__excepthook__(type, value, tb)
+                return
+            traceback.print_exception(type, value, tb)
+            pdb.post_mortem(tb)
+
+        sys.excepthook = excepthook
 
 breakpt = Breakpt()
 
