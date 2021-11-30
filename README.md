@@ -15,7 +15,7 @@ A package containing a lot of useful utilities for Python developing and debuggi
 ## Installation
 
 ```bash
-pip install vpack
+pip install --upgrade vpack
 ```
 
 ## Examples
