@@ -3,6 +3,8 @@ import pdb
 import time
 import signal
 import inspect
+import textwrap
+import traceback
 
 from colorama import Fore, Back, Style
 from pygments import highlight
@@ -20,7 +22,16 @@ class Sigview:
 
     def __init__(self) -> None:
         self.lexer = Py3Lexer(ensurenl=False)
-        self.formatter = Terminal256Formatter()
+        self.formatter = Terminal256Formatter(style='friendly')
+
+    def bordered(self, text):
+        lines = text.splitlines()
+        width = max(len(s) for s in lines)
+        header = ['+-' + '-' * width + '-+']
+        footer = ['+-' + '-' * width + '-+']
+        leading = '| '
+        trailing = ' |'
+        return '\n'.join(header + [leading + s.ljust(width) + trailing for s in lines] + footer)
 
     def display_frame(self, frame):
         try:
@@ -30,9 +41,14 @@ class Sigview:
             function = frameinfo.function
             code_context = frameinfo.code_context
             text = '{}:{} in {}'.format(filename, lineno, function)
-            logger.info("%s", Fore.CYAN + text + Style.RESET_ALL)
-            code = highlight(code_context[0], self.lexer, self.formatter)
-            logger.info("%s", code)
+            logger.info("Current file:\n%s", Fore.CYAN + text + Style.RESET_ALL)
+
+            stacktext = '\n'.join(traceback.format_stack(f=frame))
+            stacktext = textwrap.dedent(stacktext)
+            stacktext = self.bordered(stacktext)
+            stacktext = highlight(stacktext, self.lexer, self.formatter)
+
+            logger.info("Current stask:\n%s", stacktext)
         except Exception as e:
             logger.exception(e)
 

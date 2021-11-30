@@ -2,6 +2,7 @@ import logging
 
 # logging.basicConfig()
 logger = logging.getLogger("vpack")
+logger.propagate = False
 logger.setLevel(logging.INFO)
 c_handler = logging.StreamHandler()
 c_handler.setLevel(logging.INFO)
