@@ -23,15 +23,18 @@ class Sigview:
         self.formatter = Terminal256Formatter()
 
     def display_frame(self, frame):
-        frameinfo = inspect.getframeinfo(frame)
-        filename = frameinfo.filename
-        lineno = frameinfo.lineno
-        function = frameinfo.function
-        code_context = frameinfo.code_context
-        text = '{}:{} in {}'.format(filename, lineno, function)
-        code = highlight(code_context[0], self.lexer, self.formatter)
-        logger.info("%s", Fore.CYAN + text + Style.RESET_ALL)
-        logger.info("%s", code)
+        try:
+            frameinfo = inspect.getframeinfo(frame)
+            filename = frameinfo.filename
+            lineno = frameinfo.lineno
+            function = frameinfo.function
+            code_context = frameinfo.code_context
+            text = '{}:{} in {}'.format(filename, lineno, function)
+            logger.info("%s", Fore.CYAN + text + Style.RESET_ALL)
+            code = highlight(code_context[0], self.lexer, self.formatter)
+            logger.info("%s", code)
+        except Exception as e:
+            logger.exception(e)
 
     def try_openshell(self, frame):
         if self.openshell:
@@ -59,7 +62,7 @@ class Sigview:
         self.last_time_pressed = time.time()
 
     def enable_once(self,
-        signum=signal.SIGINT,
+        signum=signal.SIGUSR1,
         pidfile="/tmp/.sigview.pid",
         cmdfile="/tmp/.sigview.cmd",
         ):
