@@ -43,9 +43,16 @@ $ python examples/sigview_example.py
 
 Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to see the current frame, possible outputs:
 ```
-2
-(vpack): examples/sigview_example.py:12 in main
-(vpack):         time.sleep(2)
+^C(vpack): Current file:
+examples/sigview_example.py:11 in main
+(vpack): Current stask:
++----------------------------------------------------------+
+| File "examples/sigview_example.py", line 14, in <module> |
+|   main()                                                 |
+|                                                          |
+| File "examples/sigview_example.py", line 11, in main     |
+|   time.sleep(2)                                          |
++----------------------------------------------------------+
 ```
 
 Press <kbd>Ctrl</kbd> + <kbd>C</kbd> twice (in 0.5 seconds) to exit.
