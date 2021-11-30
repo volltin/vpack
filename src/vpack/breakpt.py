@@ -69,6 +69,7 @@ class Breakpt:
 
             embed.__code__ = __new_code__
             embed(colors="neutral")
+            embed.__code__ = x
         except ImportError:
             logger.info(Fore.RED + "No IPython installed, using pdb insdead. Strongly recommend to install IPython." + Style.RESET_ALL)
             from pdb import Pdb
