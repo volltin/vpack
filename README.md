@@ -1,5 +1,9 @@
 # Vpack
 
+[![Python Versions](https://img.shields.io/pypi/pyversions/vpack.svg?logo=python&logoColor=white)](https://pypi.org/project/vpack)
+[![PyPI Versions](https://img.shields.io/pypi/v/vpack.svg)](https://pypi.org/project/vpack/#history)
+[![Publish to PyPI](https://github.com/volltin/vpack/actions/workflows/publish-to-pypi.yml/badge.svg)](https://github.com/volltin/vpack/actions/workflows/publish-to-pypi.yml)
+
 A package containing a lot of useful utilities for Python developing and debugging.
 
 ## Features
