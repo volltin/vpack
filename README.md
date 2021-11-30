@@ -24,6 +24,8 @@ pip install --upgrade vpack
 
 Sigview is a signal handler. It will print the current running information (e.g. file, lineno, code, stack) when <kbd>Ctrl</kbd>+<kbd>C</kbd> is pressed.
 
+![Sigview Demo](docs/assets/sigview_demo.png)
+
 Enable sigview:
 
 ```python
