@@ -9,7 +9,7 @@ A package containing a lot of useful utilities for Python developing and debuggi
 ## Features
 
 - Sigview: print the current running information when Ctrl+C is pressed.
-- Breakpt: set always-on, on-times, on-error breakpoints conveniently.
+- Breakpt: set always-on, at-time, on-error breakpoints conveniently.
 - Reload: reload modules by names.
 
 ## Installation
