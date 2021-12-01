@@ -40,15 +40,17 @@ class Sigview:
             lineno = frameinfo.lineno
             function = frameinfo.function
             code_context = frameinfo.code_context
+            pid = os.getpid()
+
             text = '{}:{} in {}'.format(filename, lineno, function)
-            logger.info("Current file:\n%s", Fore.CYAN + text + Style.RESET_ALL)
+            logger.info("Current file (pid=%d):\n%s", pid, Fore.CYAN + text + Style.RESET_ALL)
 
             stacktext = '\n'.join(traceback.format_stack(f=frame))
             stacktext = textwrap.dedent(stacktext)
             stacktext = self.bordered(stacktext)
             stacktext = highlight(stacktext, self.lexer, self.formatter)
 
-            logger.info("Current stask:\n%s", stacktext)
+            logger.info("Current stask (pid=%d):\n%s", pid, stacktext)
         except Exception as e:
             logger.exception(e)
 
