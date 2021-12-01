@@ -14,7 +14,7 @@ A package containing a lot of useful utilities for Python developing and debuggi
 
 To-do:
 
-- Varview: figure out how a variable changes over time, with a statistical chart or a live counter.
+- Vartrace: figure out how a variable changes over time, with a statistical chart or a live counter.
 
 ## Installation
 
