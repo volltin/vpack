@@ -76,9 +76,9 @@ class Breakpt:
             user_frame = sys._getframe(2)
             Pdb().set_trace(user_frame)
 
-    def at(self, times):
+    def at(self, times = 1):
         """
-        break at `times` times
+        break at `times` times, default: times = 1, break at first time.
         """
 
         call_frame = inspect.currentframe().f_back
