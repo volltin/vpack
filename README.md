@@ -12,6 +12,10 @@ A package containing a lot of useful utilities for Python developing and debuggi
 - Breakpt: set always-on, at-time, on-error breakpoints conveniently.
 - Reload: reload modules by names.
 
+To-do:
+
+- Varview: figure out how a variable changes over time, with a statistical chart or a live counter.
+
 ## Installation
 
 ```bash
